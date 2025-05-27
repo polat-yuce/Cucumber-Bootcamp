@@ -20,7 +20,7 @@
     <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-java</artifactId>
-        <version>4.32.0</version>
+        <version>4.25.0</version>
     </dependency>
 
     <!-- Bana bi Cucumber  -->
@@ -28,7 +28,8 @@
     <dependency>
         <groupId>io.cucumber</groupId>
         <artifactId>cucumber-java</artifactId>
-        <version>7.22.2</version>
+        <version>7.20.0</version>
+        <scope>test</scope>
     </dependency>
 
     <!-- Bana bi TestNG    -->
@@ -36,7 +37,7 @@
     <dependency>
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
-        <version>7.11.0</version>
+        <version>7.10.2</version>
         <scope>test</scope>
     </dependency>
 
@@ -45,7 +46,8 @@
     <dependency>
         <groupId>io.cucumber</groupId>
         <artifactId>cucumber-testng</artifactId>
-        <version>7.22.2</version>
+        <version>7.20.0</version>
+        <scope>test</scope>
     </dependency>
 
     <!--        SLF4J yokedici-->
@@ -53,15 +55,15 @@
     <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
-        <version>2.0.17</version>
+        <version>2.0.16</version>
     </dependency>
 
     <!--        commons tool-->
-    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
     <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>2.19.0</version>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.17.0</version>
     </dependency>
 
 
