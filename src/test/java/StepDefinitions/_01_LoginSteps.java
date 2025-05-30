@@ -18,11 +18,14 @@ public class _01_LoginSteps {
     @When("Enter username and password and click login button")
     public void enter_username_and_password_and_click_login_button() {
         System.out.println("Username ve şifre gönderildi");
+        //Techno2025.%
     }
 
     @Then("User should login successfully")
     public void user_should_login_successfully() {
         System.out.println("Siteye girildiği doğrulandı");
+
+
     }
 
 
