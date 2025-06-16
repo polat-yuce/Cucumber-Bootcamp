@@ -23,4 +23,32 @@ public class LeftNav extends ParentPage{
     @FindBy(xpath = "(//span[text()='Citizenships'])[1]")
     public WebElement citizenship;
 
+    @FindBy(xpath = "(//span[text()='States'])[1]")
+    public WebElement states;
+
+    @FindBy(xpath = "(//span[text()='Nationalities'])[1]")
+    public WebElement nationalities;
+
+    @FindBy(xpath = "//span[text()='Fees']")
+    public WebElement fees;
+
+    @FindBy(xpath = "(//span[text()='Cities'])[1]")
+    public WebElement cities;
+
+    public WebElement getWebElement(String strElementName){
+
+        switch (strElementName)
+        {
+            case "setup" : return this.setup;
+            case "parameters" : return this.parameters;
+            case "countries" : return this.countries;
+            case "citizenship" : return this.citizenship;
+            case "states" : return this.states;
+            case "nationalities" : return this.nationalities;
+            case "fees" : return this.fees;
+            case "cities" : return this.cities;
+        }
+
+        return null;
+    }
 }
