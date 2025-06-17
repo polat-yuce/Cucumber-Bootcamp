@@ -2,35 +2,62 @@ package Utilities;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
+import java.util.Locale;
 
-public class GWD {  // Genel Web Driver
-    private static WebDriver driver;
+public class GWD {
+
+    private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    public static ThreadLocal<String> threadBrowserName= new ThreadLocal<>();
+
+    // driver: threadDriver.get() ->  bulunduğun thread deki driverı veriyor.
+    // driver vermek için : threadDriver.set(driver) -> bulunduğum threade driver ver
 
     public static WebDriver getDriver() {
-        if (driver == null) // eğen en başta ise
-            driver = new ChromeDriver();
 
-        driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+        Locale.setDefault(new Locale("EN"));
+        System.setProperty("user.language", "EN");
 
-        // eğer zaten oluşmuşsa önceden oluşmuş driver ı göndere
-        return driver;
+        if (threadBrowserName.get()==null) // XML den çalışmayan durumlar için
+            threadBrowserName.set("chrome");  // default chrome
+
+        if (threadDriver.get() == null) // eğen en başta ise
+        {
+            switch (threadBrowserName.get()) { // hattaki hangi browser adı var
+                case "firefox" : threadDriver.set(new FirefoxDriver()); break;
+                case "edge" : threadDriver.set(new EdgeDriver()); break;
+                default: threadDriver.set(new ChromeDriver()); break;
+
+            }
+            threadDriver.set(new ChromeDriver());  // bir threade bir tne driver set et
+            threadDriver.get().manage().window().maximize();
+            threadDriver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+
+            // eğer zaten oluşmuşsa önceden oluşmuş driver ı göndere
+        }
+        return threadDriver.get();
     }
 
     public static void quitDriver() {
 
-        // Test sonucu ekranı bir miktar beklesin diye
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        if (driver != null) {
-            driver.quit();
-            driver = null;
+
+        if (threadDriver.get() != null) {
+            threadDriver.get().quit();
+
+            //driver=null; // hattakini al, NULL değeri ata ve kendi SET, hattakini NULL yap
+            WebDriver hattaki = threadDriver.get();
+            hattaki = null;
+            threadDriver.set(hattaki);
         }
+
 
     }
 }

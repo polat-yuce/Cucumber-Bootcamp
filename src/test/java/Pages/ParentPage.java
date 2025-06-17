@@ -1,6 +1,6 @@
 package Pages;
 
-import Utilities.GWD;
+import Utilities.GWD_old;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -11,7 +11,7 @@ import org.testng.Assert;
 import java.time.Duration;
 
 public class ParentPage {
-    public WebDriverWait wait = new WebDriverWait(GWD.getDriver(), Duration.ofSeconds(5));
+    public WebDriverWait wait = new WebDriverWait(GWD_old.getDriver(), Duration.ofSeconds(5));
 
     public void mySendKeys(WebElement element, String yazi) {
         wait.until(ExpectedConditions.visibilityOf(element));
@@ -27,7 +27,7 @@ public class ParentPage {
     }
 
     public void scrolltoElement(WebElement element) {
-        JavascriptExecutor js=(JavascriptExecutor) GWD.getDriver();
+        JavascriptExecutor js=(JavascriptExecutor) GWD_old.getDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
@@ -51,7 +51,7 @@ public class ParentPage {
 
 
         // WebElement MesajKutusuParent1=GWD.getDriver().findElement(By.xpath("//hot-toast-container/div/div/div"));
-        WebElement MesajKutusuParent2=GWD.getDriver().findElement(By.tagName("mat-panel-description"));  //mat-expansion-panel-header
+        WebElement MesajKutusuParent2= GWD_old.getDriver().findElement(By.tagName("mat-panel-description"));  //mat-expansion-panel-header
 //
 //        System.out.println("MesajKutusuParent2.getText() = " + MesajKutusuParent2.getText()); // Ekranda gözüken text
 //        System.out.println("MesajKutusuParent2.getAccessibleName() = " + MesajKutusuParent2.getAccessibleName()); // Ekrandan ulaşıbilen her bilgisi, sana html den veriyor
